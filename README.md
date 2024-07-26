@@ -1,4 +1,5 @@
 # NanoTerminal
+For Tang Nano 20K, System Verilog </br>
 Work in progress</br>
 Video terminal over HDMI communicating over UART</br>
 Video core is somehow working, in the IBM mode 3 style.</br>
