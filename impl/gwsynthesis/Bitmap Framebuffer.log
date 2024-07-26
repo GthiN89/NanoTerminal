@@ -1,0 +1,101 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\charbuf\charbuf.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\charbuf_80x60\charbuf_mono_80x60.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\demo.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\display480p.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\gowin_prom\gowin_prom.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\gowin_rpll\gowin_rpll.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\rom_font_1bit\rom_font_1bit.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v'
+Undeclared symbol 'uart_rx_sync', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":14)
+Undeclared symbol 'uart_tx_sync', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":17)
+Undeclared symbol 'byteReady', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":88)
+Undeclared symbol 'uartDataIn', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":88)
+Undeclared symbol 'send', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+Undeclared symbol 'tx_char', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+Undeclared symbol 'busy', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+Undeclared symbol 'charbuf_o', assumed default net type 'wire'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":182)
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_rx.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_tx.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\shift_register.v'
+Analyzing Verilog file 'C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\charbuf_uart\charbuf_uart.v'
+WARN  (EX3073) : Port 'reset' remains unconnected for this instance("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":15)
+WARN  (EX3073) : Port 'reset' remains unconnected for this instance("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":19)
+WARN  (EX3073) : Port 'clean' remains unconnected for this instance("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":153)
+WARN  (EX3073) : Port 'douta' remains unconnected for this instance("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":178)
+Compiling module 'top'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":1)
+Extracting RAM for identifier 'prompt'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":61)
+Compiling module 'shift_register'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\shift_register.v":1)
+WARN  (EX3670) : Actual bit length 1 differs from formal bit length 8 for port 'data_out'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":14)
+WARN  (EX3670) : Actual bit length 1 differs from formal bit length 8 for port 'data_out'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":18)
+Compiling module 'Gowin_rPLL'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\gowin_rpll\gowin_rpll.v":10)
+Compiling module 'display_480p'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\display480p.v":1)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 32 for port 'sx'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":48)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 32 for port 'sy'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":49)
+Compiling module 'uart_rx'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_rx.v":1)
+WARN  (EX3791) : Expression size 14 truncated to fit in target size 13("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_rx.v":43)
+WARN  (EX3791) : Expression size 14 truncated to fit in target size 13("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_rx.v":47)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_rx.v":56)
+WARN  (EX3791) : Expression size 14 truncated to fit in target size 13("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_rx.v":64)
+WARN  (EX3670) : Actual bit length 1 differs from formal bit length 8 for port 'dataIn'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":88)
+Compiling module 'uart_tx'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_tx.v":1)
+WARN  (EX3791) : Expression size 26 truncated to fit in target size 25("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_tx.v":19)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\uart_tx.v":39)
+WARN  (EX3670) : Actual bit length 1 differs from formal bit length 8 for port 'data'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":122)
+Compiling module 'text_to_VGA'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\demo.v":1)
+WARN  (EX3791) : Expression size 8 truncated to fit in target size 7("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\demo.v":58)
+WARN  (EX3670) : Actual bit length 1200 differs from formal bit length 8 for port 'i_data'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":151)
+Compiling module 'charbuf'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\charbuf\charbuf.v":10)
+WARN  (EX3670) : Actual bit length 13 differs from formal bit length 12 for port 'ada'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":161)
+WARN  (EX3670) : Actual bit length 7 differs from formal bit length 8 for port 'doutb'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":171)
+Compiling module 'Gowin_pROM'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\gowin_prom\gowin_prom.v":10)
+WARN  (EX3670) : Actual bit length 15 differs from formal bit length 14 for port 'AD'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\gowin_prom\gowin_prom.v":45)
+Compiling module 'DVI_TX_Top'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\dvi_tx\dvi_tx.v":1044)
+Compiling module '**'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\dvi_tx\dvi_tx.v":0)
+Compiling module '**'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\dvi_tx\dvi_tx.v":0)
+Compiling module '**'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\dvi_tx\dvi_tx.v":0)
+Compiling module '**'("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\dvi_tx\dvi_tx.v":0)
+WARN  (EX1998) : Net 'tx_data_ready' does not have a driver("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":58)
+WARN  (EX1998) : Net 'send' does not have a driver("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+WARN  (EX1998) : Net 'tx_char' does not have a driver("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+WARN  (EX2565) : Input 'clk' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":15)
+WARN  (EX2565) : Input 'reset' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":15)
+WARN  (EX2565) : Input 'clk' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":19)
+WARN  (EX2565) : Input 'reset' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":19)
+WARN  (EX2565) : Input 'clean' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":153)
+NOTE  (EX0101) : Current top module is "top"
+WARN  (EX0211) : The output port "led[5]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":9)
+WARN  (EX0211) : The output port "led[4]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":9)
+WARN  (EX0211) : The output port "led[3]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":9)
+WARN  (EX0211) : The output port "led[2]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":9)
+WARN  (EX0211) : The output port "led[1]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":9)
+WARN  (EX0211) : The output port "led[0]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":9)
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input clk_sys is unused("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":3)
+WARN  (CV0016) : Input btn_rst_n is unused("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":4)
+WARN  (CV0016) : Input uart_rx is unused("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":5)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "uart_rx" instantiated to "rx" is swept in optimizing("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":88)
+WARN  (NL0002) : The module "uart_tx" instantiated to "tx" is swept in optimizing("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":89)
+WARN  (NL0002) : The module "shift_register" instantiated to "uartRXSF" is swept in optimizing("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":15)
+WARN  (NL0002) : The module "shift_register" instantiated to "uartTXSF" is swept in optimizing("C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\src\top.v":19)
+[95%] Generate netlist file "C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\impl\gwsynthesis\Bitmap Framebuffer.vg" completed
+[100%] Generate report file "C:\Users\Petr\Documents\FPGA\projectSOC\alfaCopy(2)CopyCopy\BitmapFramebuffer\impl\gwsynthesis\Bitmap Framebuffer_syn.rpt.html" completed
+GowinSynthesis finish

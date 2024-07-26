@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="9" Lut="3">
+    <SubModule name="dvi_rPLL"/>
+    <SubModule name="display_inst" Register="86" Alu="62" Lut="43"/>
+    <SubModule name="text_to_VGA" Register="43" Alu="6" Lut="56"/>
+    <SubModule name="charbuf" Bsram="2"/>
+    <SubModule name="font_rom" Register="1" Lut="3" Bsram="2"/>
+    <SubModule name="DVI_out" Register="73" Alu="69" Lut="220"/>
+</Module>

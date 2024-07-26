@@ -1,0 +1,24 @@
+-series GW2AR
+-device GW2AR-18
+-device_version C
+-package QFN88P
+-part_number GW2AR-LV18QN88PC8/I7
+
+
+-mod_name charbuf_mono_80x60
+-file_name charbuf_mono_80x60
+-path C:/Users/Petr/Documents/FPGA/Bitmap Spain/Bitmap Framebuffer/src/charbuf_mono_80x60/
+-type RAM_DP
+-file_type vlg
+-bram_b true
+-dev_type GW2AR-18C
+-depth_0 4800
+-depth_1 4800
+-width_0 8
+-width_1 8
+-read_mode_0 bypass
+-read_mode_1 bypass
+-write_mode_0 normal
+-write_mode_1 normal
+-speed false
+-reset_mode sync

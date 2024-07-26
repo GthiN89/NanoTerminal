@@ -1,0 +1,27 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW2AR-18C" pn="GW2AR-LV18QN88PC8/I7">gw2ar18c-011</Device>
+    <FileList>
+        <File path="src/charbuf/charbuf.v" type="file.verilog" enable="1"/>
+        <File path="src/charbuf_80x60/charbuf_mono_80x60.v" type="file.verilog" enable="1"/>
+        <File path="src/charbuf_uart/charbuf_uart.v" type="file.verilog" enable="1"/>
+        <File path="src/demo.v" type="file.verilog" enable="1"/>
+        <File path="src/display480p.v" type="file.verilog" enable="1"/>
+        <File path="src/dvi_tx/dvi_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_prom/gowin_prom.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
+        <File path="src/rom_font_1bit/rom_font_1bit.v" type="file.verilog" enable="1"/>
+        <File path="src/shift_register.v" type="file.verilog" enable="1"/>
+        <File path="src/smallModules.v" type="file.verilog" enable="0"/>
+        <File path="src/text_buffer.v" type="file.verilog" enable="0"/>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
+        <File path="src/uart_rx.v" type="file.verilog" enable="1"/>
+        <File path="src/uart_top.v" type="file.verilog" enable="0"/>
+        <File path="src/uart_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/SoC.cst" type="file.cst" enable="1"/>
+        <File path="src/Bitmap Framebuffer.rao" type="file.gao" enable="0"/>
+    </FileList>
+</Project>

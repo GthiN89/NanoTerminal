@@ -1,0 +1,263 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Lite</Mode>
+    <AoCore_Lite index="0" sample_clock="clk" trig_type="0" capture_amount="128" implemention="0" input_register_enabled="1" capture_init_data_enabled="1" module_name="top">
+        <SignalList>
+            <Bus capture_enable="true" name="uart_top/tx_cnt[4:0]">
+                <Signal>uart_top/tx_cnt[4]</Signal>
+                <Signal>uart_top/tx_cnt[3]</Signal>
+                <Signal>uart_top/tx_cnt[2]</Signal>
+                <Signal>uart_top/tx_cnt[1]</Signal>
+                <Signal>uart_top/tx_cnt[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/command_index[7:0]">
+                <Signal>uart_top/command_index[7]</Signal>
+                <Signal>uart_top/command_index[6]</Signal>
+                <Signal>uart_top/command_index[5]</Signal>
+                <Signal>uart_top/command_index[4]</Signal>
+                <Signal>uart_top/command_index[3]</Signal>
+                <Signal>uart_top/command_index[2]</Signal>
+                <Signal>uart_top/command_index[1]</Signal>
+                <Signal>uart_top/command_index[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/rx_data[7:0]">
+                <Signal>uart_top/rx_data[7]</Signal>
+                <Signal>uart_top/rx_data[6]</Signal>
+                <Signal>uart_top/rx_data[5]</Signal>
+                <Signal>uart_top/rx_data[4]</Signal>
+                <Signal>uart_top/rx_data[3]</Signal>
+                <Signal>uart_top/rx_data[2]</Signal>
+                <Signal>uart_top/rx_data[1]</Signal>
+                <Signal>uart_top/rx_data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/o_address[12:0]">
+                <Signal>text_to_VGA/o_address[12]</Signal>
+                <Signal>text_to_VGA/o_address[11]</Signal>
+                <Signal>text_to_VGA/o_address[10]</Signal>
+                <Signal>text_to_VGA/o_address[9]</Signal>
+                <Signal>text_to_VGA/o_address[8]</Signal>
+                <Signal>text_to_VGA/o_address[7]</Signal>
+                <Signal>text_to_VGA/o_address[6]</Signal>
+                <Signal>text_to_VGA/o_address[5]</Signal>
+                <Signal>text_to_VGA/o_address[4]</Signal>
+                <Signal>text_to_VGA/o_address[3]</Signal>
+                <Signal>text_to_VGA/o_address[2]</Signal>
+                <Signal>text_to_VGA/o_address[1]</Signal>
+                <Signal>text_to_VGA/o_address[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/o_data[7:0]">
+                <Signal>text_to_VGA/o_data[7]</Signal>
+                <Signal>text_to_VGA/o_data[6]</Signal>
+                <Signal>text_to_VGA/o_data[5]</Signal>
+                <Signal>text_to_VGA/o_data[4]</Signal>
+                <Signal>text_to_VGA/o_data[3]</Signal>
+                <Signal>text_to_VGA/o_data[2]</Signal>
+                <Signal>text_to_VGA/o_data[1]</Signal>
+                <Signal>text_to_VGA/o_data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/idx[6:0]">
+                <Signal>text_to_VGA/idx[6]</Signal>
+                <Signal>text_to_VGA/idx[5]</Signal>
+                <Signal>text_to_VGA/idx[4]</Signal>
+                <Signal>text_to_VGA/idx[3]</Signal>
+                <Signal>text_to_VGA/idx[2]</Signal>
+                <Signal>text_to_VGA/idx[1]</Signal>
+                <Signal>text_to_VGA/idx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/col[6:0]">
+                <Signal>text_to_VGA/col[6]</Signal>
+                <Signal>text_to_VGA/col[5]</Signal>
+                <Signal>text_to_VGA/col[4]</Signal>
+                <Signal>text_to_VGA/col[3]</Signal>
+                <Signal>text_to_VGA/col[2]</Signal>
+                <Signal>text_to_VGA/col[1]</Signal>
+                <Signal>text_to_VGA/col[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/lin[4:0]">
+                <Signal>text_to_VGA/lin[4]</Signal>
+                <Signal>text_to_VGA/lin[3]</Signal>
+                <Signal>text_to_VGA/lin[2]</Signal>
+                <Signal>text_to_VGA/lin[1]</Signal>
+                <Signal>text_to_VGA/lin[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/counter[4:0]">
+                <Signal>text_to_VGA/counter[4]</Signal>
+                <Signal>text_to_VGA/counter[3]</Signal>
+                <Signal>text_to_VGA/counter[2]</Signal>
+                <Signal>text_to_VGA/counter[1]</Signal>
+                <Signal>text_to_VGA/counter[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/state[1:0]">
+                <Signal>text_to_VGA/state[1]</Signal>
+                <Signal>text_to_VGA/state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/init_idx[6:0]">
+                <Signal>text_to_VGA/init_idx[6]</Signal>
+                <Signal>text_to_VGA/init_idx[5]</Signal>
+                <Signal>text_to_VGA/init_idx[4]</Signal>
+                <Signal>text_to_VGA/init_idx[3]</Signal>
+                <Signal>text_to_VGA/init_idx[2]</Signal>
+                <Signal>text_to_VGA/init_idx[1]</Signal>
+                <Signal>text_to_VGA/init_idx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/next_lin[4:0]">
+                <Signal>text_to_VGA/next_lin[4]</Signal>
+                <Signal>text_to_VGA/next_lin[3]</Signal>
+                <Signal>text_to_VGA/next_lin[2]</Signal>
+                <Signal>text_to_VGA/next_lin[1]</Signal>
+                <Signal>text_to_VGA/next_lin[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA/next_idx[6:0]">
+                <Signal>text_to_VGA/next_idx[6]</Signal>
+                <Signal>text_to_VGA/next_idx[5]</Signal>
+                <Signal>text_to_VGA/next_idx[4]</Signal>
+                <Signal>text_to_VGA/next_idx[3]</Signal>
+                <Signal>text_to_VGA/next_idx[2]</Signal>
+                <Signal>text_to_VGA/next_idx[1]</Signal>
+                <Signal>text_to_VGA/next_idx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="charbuf/doutb[7:0]">
+                <Signal>charbuf/doutb[7]</Signal>
+                <Signal>charbuf/doutb[6]</Signal>
+                <Signal>charbuf/doutb[5]</Signal>
+                <Signal>charbuf/doutb[4]</Signal>
+                <Signal>charbuf/doutb[3]</Signal>
+                <Signal>charbuf/doutb[2]</Signal>
+                <Signal>charbuf/doutb[1]</Signal>
+                <Signal>charbuf/doutb[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="charbuf/ada[11:0]">
+                <Signal>charbuf/ada[11]</Signal>
+                <Signal>charbuf/ada[10]</Signal>
+                <Signal>charbuf/ada[9]</Signal>
+                <Signal>charbuf/ada[8]</Signal>
+                <Signal>charbuf/ada[7]</Signal>
+                <Signal>charbuf/ada[6]</Signal>
+                <Signal>charbuf/ada[5]</Signal>
+                <Signal>charbuf/ada[4]</Signal>
+                <Signal>charbuf/ada[3]</Signal>
+                <Signal>charbuf/ada[2]</Signal>
+                <Signal>charbuf/ada[1]</Signal>
+                <Signal>charbuf/ada[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="charbuf/dina[7:0]">
+                <Signal>charbuf/dina[7]</Signal>
+                <Signal>charbuf/dina[6]</Signal>
+                <Signal>charbuf/dina[5]</Signal>
+                <Signal>charbuf/dina[4]</Signal>
+                <Signal>charbuf/dina[3]</Signal>
+                <Signal>charbuf/dina[2]</Signal>
+                <Signal>charbuf/dina[1]</Signal>
+                <Signal>charbuf/dina[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="charbuf/adb[11:0]">
+                <Signal>charbuf/adb[11]</Signal>
+                <Signal>charbuf/adb[10]</Signal>
+                <Signal>charbuf/adb[9]</Signal>
+                <Signal>charbuf/adb[8]</Signal>
+                <Signal>charbuf/adb[7]</Signal>
+                <Signal>charbuf/adb[6]</Signal>
+                <Signal>charbuf/adb[5]</Signal>
+                <Signal>charbuf/adb[4]</Signal>
+                <Signal>charbuf/adb[3]</Signal>
+                <Signal>charbuf/adb[2]</Signal>
+                <Signal>charbuf/adb[1]</Signal>
+                <Signal>charbuf/adb[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/command_buffer[157][7:0]">
+                <Signal>uart_top/command_buffer[157][7]</Signal>
+                <Signal>uart_top/command_buffer[157][6]</Signal>
+                <Signal>uart_top/command_buffer[157][5]</Signal>
+                <Signal>uart_top/command_buffer[157][4]</Signal>
+                <Signal>uart_top/command_buffer[157][3]</Signal>
+                <Signal>uart_top/command_buffer[157][2]</Signal>
+                <Signal>uart_top/command_buffer[157][1]</Signal>
+                <Signal>uart_top/command_buffer[157][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/output_command[5][7:0]">
+                <Signal>uart_top/output_command[5][7]</Signal>
+                <Signal>uart_top/output_command[5][6]</Signal>
+                <Signal>uart_top/output_command[5][5]</Signal>
+                <Signal>uart_top/output_command[5][4]</Signal>
+                <Signal>uart_top/output_command[5][3]</Signal>
+                <Signal>uart_top/output_command[5][2]</Signal>
+                <Signal>uart_top/output_command[5][1]</Signal>
+                <Signal>uart_top/output_command[5][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/output_command[4][7:0]">
+                <Signal>uart_top/output_command[4][7]</Signal>
+                <Signal>uart_top/output_command[4][6]</Signal>
+                <Signal>uart_top/output_command[4][5]</Signal>
+                <Signal>uart_top/output_command[4][4]</Signal>
+                <Signal>uart_top/output_command[4][3]</Signal>
+                <Signal>uart_top/output_command[4][2]</Signal>
+                <Signal>uart_top/output_command[4][1]</Signal>
+                <Signal>uart_top/output_command[4][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/output_command[3][7:0]">
+                <Signal>uart_top/output_command[3][7]</Signal>
+                <Signal>uart_top/output_command[3][6]</Signal>
+                <Signal>uart_top/output_command[3][5]</Signal>
+                <Signal>uart_top/output_command[3][4]</Signal>
+                <Signal>uart_top/output_command[3][3]</Signal>
+                <Signal>uart_top/output_command[3][2]</Signal>
+                <Signal>uart_top/output_command[3][1]</Signal>
+                <Signal>uart_top/output_command[3][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/output_command[2][7:0]">
+                <Signal>uart_top/output_command[2][7]</Signal>
+                <Signal>uart_top/output_command[2][6]</Signal>
+                <Signal>uart_top/output_command[2][5]</Signal>
+                <Signal>uart_top/output_command[2][4]</Signal>
+                <Signal>uart_top/output_command[2][3]</Signal>
+                <Signal>uart_top/output_command[2][2]</Signal>
+                <Signal>uart_top/output_command[2][1]</Signal>
+                <Signal>uart_top/output_command[2][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/output_command[1][7:0]">
+                <Signal>uart_top/output_command[1][7]</Signal>
+                <Signal>uart_top/output_command[1][6]</Signal>
+                <Signal>uart_top/output_command[1][5]</Signal>
+                <Signal>uart_top/output_command[1][4]</Signal>
+                <Signal>uart_top/output_command[1][3]</Signal>
+                <Signal>uart_top/output_command[1][2]</Signal>
+                <Signal>uart_top/output_command[1][1]</Signal>
+                <Signal>uart_top/output_command[1][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/output_command[0][7:0]">
+                <Signal>uart_top/output_command[0][7]</Signal>
+                <Signal>uart_top/output_command[0][6]</Signal>
+                <Signal>uart_top/output_command[0][5]</Signal>
+                <Signal>uart_top/output_command[0][4]</Signal>
+                <Signal>uart_top/output_command[0][3]</Signal>
+                <Signal>uart_top/output_command[0][2]</Signal>
+                <Signal>uart_top/output_command[0][1]</Signal>
+                <Signal>uart_top/output_command[0][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/state[1:0]">
+                <Signal>uart_top/state[1]</Signal>
+                <Signal>uart_top/state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/tx_data[7:0]">
+                <Signal>uart_top/tx_data[7]</Signal>
+                <Signal>uart_top/tx_data[6]</Signal>
+                <Signal>uart_top/tx_data[5]</Signal>
+                <Signal>uart_top/tx_data[4]</Signal>
+                <Signal>uart_top/tx_data[3]</Signal>
+                <Signal>uart_top/tx_data[2]</Signal>
+                <Signal>uart_top/tx_data[1]</Signal>
+                <Signal>uart_top/tx_data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="uart_top/prompt_cnt[5:0]">
+                <Signal>uart_top/prompt_cnt[5]</Signal>
+                <Signal>uart_top/prompt_cnt[4]</Signal>
+                <Signal>uart_top/prompt_cnt[3]</Signal>
+                <Signal>uart_top/prompt_cnt[2]</Signal>
+                <Signal>uart_top/prompt_cnt[1]</Signal>
+                <Signal>uart_top/prompt_cnt[0]</Signal>
+            </Bus>
+        </SignalList>
+    </AoCore_Lite>
+    <GAO_ID>1011000101000100</GAO_ID>
+</GAO_CONFIG>
