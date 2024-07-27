@@ -22,6 +22,7 @@
         <File path="src/uart_top.v" type="file.verilog" enable="0"/>
         <File path="src/uart_tx.v" type="file.verilog" enable="1"/>
         <File path="src/SoC.cst" type="file.cst" enable="1"/>
-        <File path="src/terminal.rao" type="file.gao" enable="1"/>
+        <File path="src/terminal.rao" type="file.gao" enable="0"/>
+        <File path="src/terminal123.rao" type="file.gao" enable="1"/>
     </FileList>
 </Project>

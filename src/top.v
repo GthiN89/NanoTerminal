@@ -106,21 +106,21 @@ module top (
 
     integer i;
     reg vga_text_dataFlag = 1'b0;
-reg uart_rx_prev; // To store the previous state of uart_rx
+reg clear_delay = 0; // To store the previous state of uart_rx
 
     always @(posedge clk) begin
-        uart_rx_prev <= uart_rx; // Update the previous state of uart_rx
+
         case (state)
             IDLE: begin
             y_char_delayed <= y_char;
             x_char_delayed <= x_char;
             prompt_cnt <= 6'd0;
             led <= 6'b111000; // LED status for IDLE state
-
+           for (i = 0; i < bufferWidth; i = i + 1) begin
+                    VGAcharBuf[i] <= 8'b00000000;
+                end
                     state <= SEND_PROMPT;
-
-
-
+                
             end
 
             SEND_PROMPT: begin
@@ -151,35 +151,46 @@ reg uart_rx_prev; // To store the previous state of uart_rx
             end
 
             SEND_COMMAND: begin
+                vga_text_dataFlag <= 1'b1; // Set flag to 1 when sending data
                 y_char_delayed <= y_char;
                 x_char_delayed <= x_char;
                 led <= 6'b001100; // LED status for SEND_COMMAND state
                 VGAcharBuf <= UARTcharBuf;
                 state <= CLEAR_BUFFER;
-                vga_text_dataFlag <= 1'b1; // Set flag to 1 when sending data
+
             end
 
             CLEAR_BUFFER: begin
+                vga_text_dataFlag <= 1'b0; // Set flag to 1 when sending data
                 y_char_delayed <= y_char;
                 x_char_delayed <= x_char;
                 led <= 6'b000000; // LED status for CLEAR_BUFFER state
+                if (clear_delay < 1) begin
+                    clear_delay <= 1; end else
+                begin
                 for (i = 0; i < bufferWidth; i = i + 1) begin
+    
                     UARTcharBuf[i] <= 8'b00000000;
-                    VGAcharBuf[i] <= 8'b00000000;
+//                    VGAcharBuf[i] <= 8'b00000000;
                 end
                 inputCharIndex <= 0;
                 vga_text_dataFlag <= 1'b0; // Ensure flag is cleared after buffer is cleared
                 state <= IDLE;
+                end
             end
         endcase
+        
+        vga_text_dataFlag_temp <= vga_text_dataFlag;
+        vga_text_dataFlag_delay <= vga_text_dataFlag_temp;
     end
-
+    reg vga_text_dataFlag_delay, vga_text_dataFlag_temp;
     text_to_VGA text_to_VGA_inst (
         .i_clk(vsync),
         .o_address(vram_addr),   // Video address for write [12:0]
         .o_data(vram_data),      // Character to write [7:0]
         .o_we(printable),        // Write enable signal
         .i_ena(vga_text_dataFlag), // Module enable
+        .vga_text_dataFlag(vga_text_dataFlag),
         .i_data(VGAcharBuf)
     );
 
