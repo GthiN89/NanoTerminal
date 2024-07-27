@@ -12,7 +12,7 @@ Its fun, and will help me uderstand HW level. Plan is "upgrade it" to custom com
 TODO:
 <ul>
 <li>"live" communication with console</li>
-<li>USB keyboard supportt</li>
+<li>USB keyboard support</li>
 <li>ALU</li>
 </ul>
 </br>
