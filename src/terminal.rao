@@ -101,7 +101,24 @@
                 <Signal>txmod/len[0]</Signal>
             </Bus>
             <Signal capture_enable="true">byteReady</Signal>
+            <Signal capture_enable="true">UARTcharBuf[16]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[15]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[14]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[13]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[12]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[11]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[10]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[9]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[8]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[7]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[6]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[5]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[4]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[3]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[2]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[1]</Signal>
+            <Signal capture_enable="true">UARTcharBuf[0]</Signal>
         </SignalList>
     </AoCore_Lite>
-    <GAO_ID>1001110100100110</GAO_ID>
+    <GAO_ID>0001101110010101</GAO_ID>
 </GAO_CONFIG>

@@ -120,13 +120,14 @@ end
     localparam  SEND_PROMPT = 1'b1;
     localparam  SEND_COMMAND = 2'b10;
     localparam CLEAR_BUFFER = 2'b11;
+    localparam ECHO = 3'b001;
 
 integer i;
 reg vga_text_dataFlag = 1'b0;
 
 always @(posedge clk) begin
         if (byteReady) begin
-            UARTcharBuf[(inputCharIndex*8) +: 8] <= uartDataIn;
+            UARTcharBuf[(inputCharIndex*8) + 8] <= uartDataIn;
             inputCharIndex <= inputCharIndex + 1;
         end
         
@@ -141,20 +142,40 @@ always @(posedge clk) begin
             prompt_cnt <= 6'd0;
             led <= 6'b111111;
         end
-        SEND_PROMPT : begin
-            if (prompt_cnt < PROMPT_LEN) begin
-                //if (tx_data_ready) begin
-                    tx_data_valid <= 1'b1;
-                    tx_data <= prompt[prompt_cnt];
-                    prompt_cnt <= prompt_cnt + 1;
-                    led <= 6'b011110;
-//end
-           // end else if (tx_data_ready) begin
-          //      tx_data_valid <= 1'b0;
+            SEND_PROMPT: begin // SEND_PROMPT state
+                if (tx_data_valid && tx_data_ready && prompt_cnt < PROMPT_LEN) begin // If data is valid, ready, and not the last byte of prompt
+                    tx_data <= prompt[prompt_cnt]; // Load next byte of prompt
+                    prompt_cnt <= prompt_cnt + 1; // Increment prompt counter
+                end else if (tx_data_valid && tx_data_ready) begin // If last byte of prompt is sent
+                    tx_data_valid <= 1'b0; // Set data valid to 0
+                    state <= ECHO; // Move to ECHO state
+                end else if (!tx_data_valid) begin // If data is not valid
+                    tx_data_valid <= 1'b1; // Set data valid to 1
+                    tx_data <= prompt[prompt_cnt]; // Load first byte of prompt
+                end
             end
-          state <= IDDLE;
-          led <= 6'b110011;
-        end
+            ECHO: begin // ECHO state
+                if (byteReady) begin // If valid data is received
+                    if (uartDataIn == 8'h08) begin // If backspace key is pressed
+        //                if (command_index > 0) begin // If buffer is not empty
+//                            command_index <= command_index - 1; // Decrement command buffer index
+  //                          tx_data <= 8'h08; // Echo backspace
+    //                        tx_data_valid <= 1'b1; // Set data valid to 1
+      //                  end
+//end else if (rx_data == 8'h0d) begin // If Enter key is pressed
+//state <= COPY_COMMAND; // Move to COPY_COMMAND state
+  //                      copy_index <= 0; // Initialize copy index
+                    end else begin
+//                        tx_data <= rx_data; // Load received data to transmit
+                        tx_data_valid <= 1'b1; // Set data valid to 1
+ //                      internal_command_buffer[command_index] <= rx_//data; // Store received character in buffer
+//                        command_index <= command_index + 1; // Increment command buffer index
+ //                       command_ready <= 1'b0; // Reset command_ready
+                    end
+                end else if (tx_data_valid && tx_data_ready) begin // If data is valid and ready
+                    tx_data_valid <= 1'b0; // Set data valid to 0
+                end
+            end
         SEND_COMMAND : begin
             vga_text_dataFlag <= 1'b1;
             state <= CLEAR_BUFFER;
