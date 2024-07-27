@@ -1,43 +1,30 @@
 module top (
-    input  wire clk,          // hlavní hodiny
-    input  wire clk_sys,      // systémové hodiny
-    input  wire btn_rst_n,    // resetovací tlačítko
-    input  uart_rx,
-    output [2:0] TMDSp, TMDSn,
-    output TMDSp_clock, TMDSn_clock,
-    output uart_tx ,
-    output reg [5:0] led
+    input  wire clk,          // main clock
+    input  wire clk_sys,      // system clock
+    input  wire btn_rst_n,    // reset button
+    input  wire uart_rx,      // UART receive
+    output wire [2:0] TMDSp, TMDSn, // HDMI/DVI signals
+    output wire TMDSp_clock, TMDSn_clock, // HDMI/DVI clock signals
+    output wire uart_tx,      // UART transmit
+    output reg [5:0] led      // LEDs
 );
-    
-//    shift_register uartRXSF(
-//        .data_in(uart_rx),
-//        .data_out(uart_rx_sync),
-//        .clk(clk),
-//        .reset(1'b0)
-//    );
-//    shift_register uartTXSF(
-//        .data_in(uart_tx_sync),
-//        .data_out(uart_tx),
-//        .clk(clk),
-//        .reset(1'b0)
-//    );
 
-    localparam CORDW = 16;       // šířka souřadnic (bitů)
+    localparam CORDW = 16;       // coordinate width (bits)
     wire signed [CORDW-1:0] sx, sy;
     wire hsync, vsync;
     wire de, frame, line;
 
-    // Generátor znaků, monochromatický, font 8x16
+    // Character generator, monochrome, font 8x16
     wire [2:0] x_char = sx[2:0];
     wire [3:0] y_char = sy[3:0];
 
-    // Výpočet horizontální a vertikální pozice buňky
+    // Calculate horizontal and vertical cell positions
     wire [6:0] charnum;
     wire [6:0] x_cell = sx[9:3];  // 80 cols
     wire [4:0] y_cell = sy[8:4];  // 30 rows
     wire [11:0] video_addr = {y_cell, x_cell};
 
-    // Generování hodinového signálu
+    // Clock generation
     wire clkout_o, lock_o;
     Gowin_rPLL dvi_rPLL(
         .clkout(clkout_o), //output clkout
@@ -45,7 +32,7 @@ module top (
         .clkin(clk)        //input clkin
     );
 
-    // Generování synchronizačních signálů
+    // Display synchronization signals
     display_480p display_inst (
         .clk_pix(clk),
         .rst_pix(1'b0),
@@ -57,43 +44,38 @@ module top (
         .frame(frame),
         .line()
     );
-reg [7:0] tx_data; // Data to be transmitted
-reg tx_data_valid; // Valid signal for transmission data
-wire tx_data_ready; // Ready signal for transmission data
-reg [4:0] tx_cnt; // Counter for transmitted bytes
+
+    // UART Communication
+    reg [7:0] tx_data; // Data to be transmitted
+    reg tx_data_valid; // Valid signal for transmission data
+    wire tx_data_ready; // Ready signal for transmission data
+    reg [4:0] tx_cnt; // Counter for transmitted bytes
+
     localparam PROMPT_LEN = 21; // Length of the prompt message with escape sequences
     reg [7:0] prompt [PROMPT_LEN-1:0]; // Buffer to hold the prompt message
     reg [5:0] prompt_cnt; // Counter for prompt message
     reg [3:0] state;
     reg       false;
 
-
-
-
-        // Připojení demo modulu
+    // VRAM and display signals
     wire [12:0] vram_addr;
     wire [7:0] vram_data;
     wire printable;
-
     reg [3:0] y_char_delayed;
     reg [2:0] x_char_delayed;
 
-initial begin
-    prompt[0]  = 8'h1B; prompt[1]  = 8'h5B; prompt[2]  = 8'h33; prompt[3]  = 8'h31; prompt[4]  = 8'h6D; // ESC[31m (red)
-    prompt[5]  = "N";   prompt[6]  = "u";   prompt[7]  = "c";   prompt[8]  = "l";   prompt[9]  = "e";
-    prompt[10] = "u";   prompt[11] = "s";   prompt[12] = "S";   prompt[13] = "o";   prompt[14] = "C";
-    prompt[15] = 8'h1B; prompt[16] = 8'h5B; prompt[17] = 8'h30; prompt[18] = 8'h6D; // ESC[0m (reset)
-    prompt[19] = ">";   prompt[20] = " ";
-    state = 1'b0;
-    false = 1'b0;
-end
+    initial begin
+        prompt[0]  = 8'h1B; prompt[1]  = 8'h5B; prompt[2]  = 8'h33; prompt[3]  = 8'h31; prompt[4]  = 8'h6D; // ESC[31m (red)
+        prompt[5]  = "N";   prompt[6]  = "u";   prompt[7]  = "c";   prompt[8]  = "l";   prompt[9]  = "e";
+        prompt[10] = "u";   prompt[11] = "s";   prompt[12] = "S";   prompt[13] = "o";   prompt[14] = "C";
+        prompt[15] = 8'h1B; prompt[16] = 8'h5B; prompt[17] = 8'h30; prompt[18] = 8'h6D; // ESC[0m (reset)
+        prompt[19] = ">";   prompt[20] = " ";
+        state = IDLE;
+        false = 1'b0;
+    end
 
+    reg [7:0] uartDataIn;
 
-
-
-//    uart_rx rxmod(.clk(clk), .byteReady(byteReady), .dataIn(uartDataIn), .rx(uart_rx)); //rec
- //   uart_tx txmod(.clk(clk), .tx(uart_tx), .send(tx_data_valid), .data(tx_data), .busy(false)); //env
-    
     uart_rx rxmod(
         .clk(clk),
         .byteReady(byteReady),
@@ -106,108 +88,86 @@ end
         .tx(uart_tx),
         .send(tx_data_valid),
         .data(tx_data),
-        .busy(false)
+        .busy()
     ); // Transmitter module
 
     localparam bufferWidth = 640; 
-    reg [(bufferWidth-1):0] UARTcharBuf = 0;
+    reg [7:0] UARTcharBuf [bufferWidth-1:0];
     reg [7:0] inputCharIndex = 0;
 
+    // States
+    localparam  IDLE = 4'b0000;
+    localparam  SEND_PROMPT = 4'b0001;
+    localparam  RECEIVE_CHAR = 4'b0010;
+    localparam  SEND_COMMAND = 4'b0011;
+    localparam  CLEAR_BUFFER = 4'b0100;
+    localparam  ECHO = 4'b0101;
 
-   //states
-    
-    localparam  IDDLE = 1'b0;
-    localparam  SEND_PROMPT = 1'b1;
-    localparam  SEND_COMMAND = 2'b10;
-    localparam CLEAR_BUFFER = 2'b11;
-    localparam ECHO = 3'b001;
+    integer i;
+    reg vga_text_dataFlag = 1'b0;
 
-integer i;
-reg vga_text_dataFlag = 1'b0;
+    always @(posedge clk) begin
+        case (state)
+            IDLE: begin
+                y_char_delayed <= y_char;
+                x_char_delayed <= x_char;
+                prompt_cnt <= 6'd0;
+                led <= 6'b111111;
+                state <= SEND_PROMPT;
+            end
 
-always @(posedge clk) begin
-        if (byteReady) begin
-            UARTcharBuf[(inputCharIndex*8) + 8] <= uartDataIn;
-            inputCharIndex <= inputCharIndex + 1;
-        end
-        
-        if (uartDataIn == 8'd13) begin // Enter key
-            state <= SEND_COMMAND;
-            led <= 6'b010101;
-        end
-    case (state)
-        IDDLE : begin
-            y_char_delayed <= y_char;
-            x_char_delayed <= x_char;
-            prompt_cnt <= 6'd0;
-            led <= 6'b111111;
-        end
-            SEND_PROMPT: begin // SEND_PROMPT state
-                if (tx_data_valid && tx_data_ready && prompt_cnt < PROMPT_LEN) begin // If data is valid, ready, and not the last byte of prompt
+            SEND_PROMPT: begin
+                if (prompt_cnt < PROMPT_LEN) begin
                     tx_data <= prompt[prompt_cnt]; // Load next byte of prompt
+                    tx_data_valid <= 1'b1; // Trigger send
                     prompt_cnt <= prompt_cnt + 1; // Increment prompt counter
-                end else if (tx_data_valid && tx_data_ready) begin // If last byte of prompt is sent
-                    tx_data_valid <= 1'b0; // Set data valid to 0
-                    state <= ECHO; // Move to ECHO state
-                end else if (!tx_data_valid) begin // If data is not valid
-                    tx_data_valid <= 1'b1; // Set data valid to 1
-                    tx_data <= prompt[prompt_cnt]; // Load first byte of prompt
+                end else begin
+                    tx_data_valid <= 1'b0; // Stop sending
+                    state <= RECEIVE_CHAR;
                 end
             end
-            ECHO: begin // ECHO state
-                if (byteReady) begin // If valid data is received
-                    if (uartDataIn == 8'h08) begin // If backspace key is pressed
-        //                if (command_index > 0) begin // If buffer is not empty
-//                            command_index <= command_index - 1; // Decrement command buffer index
-  //                          tx_data <= 8'h08; // Echo backspace
-    //                        tx_data_valid <= 1'b1; // Set data valid to 1
-      //                  end
-//end else if (rx_data == 8'h0d) begin // If Enter key is pressed
-//state <= COPY_COMMAND; // Move to COPY_COMMAND state
-  //                      copy_index <= 0; // Initialize copy index
-                    end else begin
-//                        tx_data <= rx_data; // Load received data to transmit
-                        tx_data_valid <= 1'b1; // Set data valid to 1
- //                      internal_command_buffer[command_index] <= rx_//data; // Store received character in buffer
-//                        command_index <= command_index + 1; // Increment command buffer index
- //                       command_ready <= 1'b0; // Reset command_ready
-                    end
-                end else if (tx_data_valid && tx_data_ready) begin // If data is valid and ready
-                    tx_data_valid <= 1'b0; // Set data valid to 0
-                end
-            end
-        SEND_COMMAND : begin
-            vga_text_dataFlag <= 1'b1;
-            state <= CLEAR_BUFFER;
-        end
-        CLEAR_BUFFER: begin
-            for (i = 0; i < (bufferWidth-1); i = i + 1) begin
-                UARTcharBuf[i] <= 8'b0;
-            end
-            vga_text_dataFlag <= 1'b0;
-            state <= IDDLE;
-        end
-    endcase
-end
 
+            RECEIVE_CHAR: begin
+                if (byteReady) begin
+                    UARTcharBuf[inputCharIndex] <= uartDataIn;
+                    inputCharIndex <= inputCharIndex + 1;
+                    if (uartDataIn == 8'h0D) begin // Enter key
+                        state <= SEND_COMMAND;
+                        led <= 6'b010101;
+                    end
+                end
+            end
+
+            SEND_COMMAND: begin
+                vga_text_dataFlag <= 1'b1;
+                state <= CLEAR_BUFFER;
+            end
+
+            CLEAR_BUFFER: begin
+                for (i = 0; i < bufferWidth; i = i + 1) begin
+                    UARTcharBuf[i] <= 8'b0;
+                end
+                inputCharIndex <= 0;
+                vga_text_dataFlag <= 1'b0;
+                state <= IDLE;
+            end
+        endcase
+    end
 
     text_to_VGA text_to_VGA (
         .i_clk(vsync),
-        .o_address(vram_addr),   // adresa videa pro zápis [12:0]
-        .o_data(vram_data),      // znak k zápisu [7:0]
-        .o_we(printable),        // znak k tisku
-//        .full,
-        .i_ena(1'b1),             // povolení modulu
-        .i_data(uartDataIn)
-//        .clean()
+        .o_address(vram_addr),   // Video address for write [12:0]
+        .o_data(vram_data),      // Character to write [7:0]
+        .o_we(printable),        // Write enable signal
+        .i_ena(vga_text_dataFlag), // Module enable
+        .i_data(UARTcharBuf)
     );
 
-    // 256 chars, 16 rows, 8 cols => 8+4+3 = 15 bits
+    // ROM address for font
     wire [14:0] rom_addr = {charnum, y_char_delayed, x_char_delayed};
 
-    // Připojení duální paměti RAM
     charbuf charbuf(
-        // A port: write
+        // Port A: write
         .ada(vram_addr),   // input [12:0] A address
         .dina(vram_data),  // input [7:0]  Data in
         .clka(clk),        // input clock for A port
@@ -216,7 +176,7 @@ end
         .reseta(1'b0),     // input reset for A
         .wrea(printable),  // input write enable for A
 
-        // B port: read
+        // Port B: read
         .adb(video_addr),  // input [12:0] B address
         .doutb(charnum),   // output [7:0] Data out
         .clkb(clk),        // input clock for B port
@@ -227,22 +187,21 @@ end
         .dinb(8'h00)       // input data for B (not used)
     );
 
-    // Připojení ROM paměti pro fonty
     Gowin_pROM font_rom(
-        .dout(charbuf_o),        // output [0:0] dout
-        .clk(clk),          // input clk
-        .oce(1'b1),         // input oce
-        .ce(1'b1),          // input ce
-        .reset(1'b0),       // input reset
-        .ad(rom_addr)       // input [14:0] ad
+        .dout(charbuf_o),  // output [0:0] dout
+        .clk(clk),         // input clk
+        .oce(1'b1),        // input oce
+        .ce(1'b1),         // input ce
+        .reset(1'b0),      // input reset
+        .ad(rom_addr)      // input [14:0] ad
     );
 
-    // Konverze výstupních dat na 8bitové RGB
+    // Convert output data to 8-bit RGB
     wire [7:0] paint_r = {8{charbuf_o}};
     wire [7:0] paint_g = {8{charbuf_o}};
     wire [7:0] paint_b = {8{charbuf_o}};
 
-    // Výstup DVI
+    // DVI Output
     DVI_TX_Top DVI_out(
         .I_rst_n(1'b1),       // input I_rst_n
         .I_serial_clk(clkout_o), // input I_serial_clk

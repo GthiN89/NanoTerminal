@@ -2,7 +2,7 @@ module text_to_VGA (
     input i_clk,           // System clock input
     input i_ena,           // Enable signal input
     input clean,           // Clean/reset signal input
-    input [639:0] i_data , // Input data buffer (256 bytes)
+    input [7:0 ]i_data [639:0] , // Input data buffer (256 bytes)
     output reg [12:0] o_address, // Output address for VGA memory
     output reg [7:0] o_data, // Output data for VGA memory
     output reg o_we, // Write enable signal for VGA memory
