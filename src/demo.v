@@ -2,7 +2,7 @@ module text_to_VGA (
     input i_clk,           // System clock input
     input i_ena,           // Enable signal input
     input clean,           // Clean/reset signal input
-    input [7:0 ]i_data [639:0] , // Input data buffer (256 bytes)
+    input [7:0] i_data  [79:0], // Input data buffer (256 bytes)
     output reg [12:0] o_address, // Output address for VGA memory
     output reg [7:0] o_data, // Output data for VGA memory
     output reg o_we, // Write enable signal for VGA memory
@@ -29,7 +29,7 @@ reg [1:0] state = STATE_INIT; // State machine register
 
 // Initial message to be displayed once
 localparam init_len = 32;
-localparam [init_len*8-1:0] init_text = "Welcome to NucleusSoC terminal.\n";
+localparam [init_len*8-1:0] init_text = "Welcome to NucleusSoC terminal.";
 
 reg [6:0] init_idx = 0; // Initial message index
 
@@ -84,39 +84,39 @@ always @(posedge slowclock) begin
             end
 
             STATE_WRITE_TEXT: begin // State for writing text
-                o_address <= {lin, col}; // Set output address
-                o_data <= i_data[idx]; // Set output data
-                o_we <= 1'b1; // Set write enable
+//                o_address <= {lin, col}; // Set output address
+//                o_data <= i_data[idx]; // Set output data
+//                o_we <= 1'b1; // Set write enable
 
-                // Update text position
-                idx <= next_idx; // Increment text index
+//                 Update text position
+//                idx <= next_idx; // Increment text index
 
-                // Update screen position
-                if (i_data[idx] == 8'h0A) begin // If newline character is detected
-                    col <= 0; // Reset column position
-                    lin <= next_lin; // Increment line position
-                end else begin
-                    if (col == maxcol) begin // If end of column
-                        col <= 0; // Reset column position
-                        lin <= next_lin; // Increment line position
-                    end else begin
-                        col <= col + 1'b1; // Increment column position
-                    end
-                end
+ //                Update screen position
+//                if (i_data[idx] == 8'h0A) begin // If newline character is detected
+//                    col <= 0; // Reset column position
+//                    lin <= next_lin; // Increment line position
+//                end else begin
+//                    if (col == maxcol) begin // If end of column
+//                        col <= 0; // Reset column position
+//                        lin <= next_lin; // Increment line position
+//                    end else begin
+//                        col <= col + 1'b1; // Increment column position
+//                    end
+//                end
 
-                // Check if we have reached the end of the screen
-                if (lin == maxlin && col == maxcol) begin // If end of screen
-                    state <= STATE_SCREEN_FULL; // Set state to screen full
-                    full <= 1; // Set full signal
-                end
+ //                Check if we have reached the end of the screen
+//                if (lin == maxlin && col == maxcol) begin // If end of screen
+//                    state <= STATE_SCREEN_FULL; // Set state to screen full
+//                    full <= 1; // Set full signal
+//                end
             end
 
             STATE_SCREEN_FULL: begin // State for screen full
-                full <= 1; // Set full signal
-                col <= 0; // Reset column position
-                lin <= 0; // Reset line position
-                idx <= 0; // Reset index position
-                state <= STATE_WAIT_CMD; // Set state to wait for commands
+//                full <= 1; // Set full signal
+//                col <= 0; // Reset column position
+//                lin <= 0; // Reset line position
+//                idx <= 0; // Reset index position
+//                state <= STATE_WAIT_CMD; // Set state to wait for commands
             end
         endcase
     end

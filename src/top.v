@@ -91,8 +91,9 @@ module top (
         .busy()
     ); // Transmitter module
 
-    localparam bufferWidth = 640; 
+    localparam bufferWidth = 80; // chars 
     reg [7:0] UARTcharBuf [bufferWidth-1:0];
+    reg [7:0] VGAcharBuf [bufferWidth-1:0];
     reg [7:0] inputCharIndex = 0;
 
     // States
@@ -105,18 +106,27 @@ module top (
 
     integer i;
     reg vga_text_dataFlag = 1'b0;
+reg uart_rx_prev; // To store the previous state of uart_rx
 
     always @(posedge clk) begin
+        uart_rx_prev <= uart_rx; // Update the previous state of uart_rx
         case (state)
             IDLE: begin
-                y_char_delayed <= y_char;
-                x_char_delayed <= x_char;
-                prompt_cnt <= 6'd0;
-                led <= 6'b111111;
-                state <= SEND_PROMPT;
+            y_char_delayed <= y_char;
+            x_char_delayed <= x_char;
+            prompt_cnt <= 6'd0;
+            led <= 6'b111000; // LED status for IDLE state
+
+                    state <= SEND_PROMPT;
+
+
+
             end
 
             SEND_PROMPT: begin
+                y_char_delayed <= y_char;
+                x_char_delayed <= x_char;
+                led <= 6'b000001; // LED status for SEND_PROMPT state
                 if (prompt_cnt < PROMPT_LEN) begin
                     tx_data <= prompt[prompt_cnt]; // Load next byte of prompt
                     tx_data_valid <= 1'b1; // Trigger send
@@ -128,39 +138,49 @@ module top (
             end
 
             RECEIVE_CHAR: begin
+                y_char_delayed <= y_char;
+                x_char_delayed <= x_char;
+                led <= 6'b110011; // LED status for RECEIVE_CHAR state
                 if (byteReady) begin
                     UARTcharBuf[inputCharIndex] <= uartDataIn;
                     inputCharIndex <= inputCharIndex + 1;
-                    if (uartDataIn == 8'h0D) begin // Enter key
-                        state <= SEND_COMMAND;
-                        led <= 6'b010101;
+                    if (uartDataIn == 8'h8D) begin // Enter key
+                      state <= SEND_COMMAND;
                     end
                 end
             end
 
             SEND_COMMAND: begin
-                vga_text_dataFlag <= 1'b1;
+                y_char_delayed <= y_char;
+                x_char_delayed <= x_char;
+                led <= 6'b001100; // LED status for SEND_COMMAND state
+                VGAcharBuf <= UARTcharBuf;
                 state <= CLEAR_BUFFER;
+                vga_text_dataFlag <= 1'b1; // Set flag to 1 when sending data
             end
 
             CLEAR_BUFFER: begin
+                y_char_delayed <= y_char;
+                x_char_delayed <= x_char;
+                led <= 6'b000000; // LED status for CLEAR_BUFFER state
                 for (i = 0; i < bufferWidth; i = i + 1) begin
-                    UARTcharBuf[i] <= 8'b0;
+                    UARTcharBuf[i] <= 8'b00000000;
+                    VGAcharBuf[i] <= 8'b00000000;
                 end
                 inputCharIndex <= 0;
-                vga_text_dataFlag <= 1'b0;
+                vga_text_dataFlag <= 1'b0; // Ensure flag is cleared after buffer is cleared
                 state <= IDLE;
             end
         endcase
     end
 
-    text_to_VGA text_to_VGA (
+    text_to_VGA text_to_VGA_inst (
         .i_clk(vsync),
         .o_address(vram_addr),   // Video address for write [12:0]
         .o_data(vram_data),      // Character to write [7:0]
         .o_we(printable),        // Write enable signal
         .i_ena(vga_text_dataFlag), // Module enable
-        .i_data(UARTcharBuf)
+        .i_data(VGAcharBuf)
     );
 
     // ROM address for font
