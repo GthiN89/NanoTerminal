@@ -14,7 +14,7 @@
         <File path="src/gowin_prom/gowin_prom.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
         <File path="src/rom_font_1bit/rom_font_1bit.v" type="file.verilog" enable="1"/>
-        <File path="src/shift_register.v" type="file.verilog" enable="1"/>
+        <File path="src/shift_register.v" type="file.verilog" enable="0"/>
         <File path="src/smallModules.v" type="file.verilog" enable="0"/>
         <File path="src/text_buffer.v" type="file.verilog" enable="0"/>
         <File path="src/top.v" type="file.verilog" enable="1"/>
@@ -22,6 +22,6 @@
         <File path="src/uart_top.v" type="file.verilog" enable="0"/>
         <File path="src/uart_tx.v" type="file.verilog" enable="1"/>
         <File path="src/SoC.cst" type="file.cst" enable="1"/>
-        <File path="src/Bitmap Framebuffer.rao" type="file.gao" enable="0"/>
+        <File path="src/terminal.rao" type="file.gao" enable="1"/>
     </FileList>
 </Project>

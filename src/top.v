@@ -5,18 +5,22 @@ module top (
     input  uart_rx,
     output [2:0] TMDSp, TMDSn,
     output TMDSp_clock, TMDSn_clock,
-    output uart_tx,
+    output uart_tx ,
     output reg [5:0] led
 );
     
-    shift_register uartRXSF(
-        .data_in(uart_rx),
-        .data_out(uart_rx_sync)
-    );
-    shift_register uartTXSF(
-        .data_in(uart_tx_sync),
-        .data_out(uart_tx)
-    );
+//    shift_register uartRXSF(
+//        .data_in(uart_rx),
+//        .data_out(uart_rx_sync),
+//        .clk(clk),
+//        .reset(1'b0)
+//    );
+//    shift_register uartTXSF(
+//        .data_in(uart_tx_sync),
+//        .data_out(uart_tx),
+//        .clk(clk),
+//        .reset(1'b0)
+//    );
 
     localparam CORDW = 16;       // šířka souřadnic (bitů)
     wire signed [CORDW-1:0] sx, sy;
@@ -61,6 +65,7 @@ reg [4:0] tx_cnt; // Counter for transmitted bytes
     reg [7:0] prompt [PROMPT_LEN-1:0]; // Buffer to hold the prompt message
     reg [5:0] prompt_cnt; // Counter for prompt message
     reg [3:0] state;
+    reg       false;
 
 
 
@@ -80,18 +85,33 @@ initial begin
     prompt[15] = 8'h1B; prompt[16] = 8'h5B; prompt[17] = 8'h30; prompt[18] = 8'h6D; // ESC[0m (reset)
     prompt[19] = ">";   prompt[20] = " ";
     state = 1'b0;
+    false = 1'b0;
 end
 
 
 
 
-    uart_rx rx(.clk(clk), .byteReady(byteReady), .dataIn(uartDataIn), .rx(uart_rx_sync)); //rec
-    uart_tx tx(.clk(clk), .tx(uart_tx_sync), .send(send), .data(tx_char), .busy(busy)); //env
+//    uart_rx rxmod(.clk(clk), .byteReady(byteReady), .dataIn(uartDataIn), .rx(uart_rx)); //rec
+ //   uart_tx txmod(.clk(clk), .tx(uart_tx), .send(tx_data_valid), .data(tx_data), .busy(false)); //env
     
+    uart_rx rxmod(
+        .clk(clk),
+        .byteReady(byteReady),
+        .dataIn(uartDataIn),
+        .rx(uart_rx)
+    ); // Receiver module
 
+    uart_tx txmod(
+        .clk(clk),
+        .tx(uart_tx),
+        .send(tx_data_valid),
+        .data(tx_data),
+        .busy(false)
+    ); // Transmitter module
 
-    localparam bufferWidth = 1200; 
+    localparam bufferWidth = 640; 
     reg [(bufferWidth-1):0] UARTcharBuf = 0;
+    reg [7:0] inputCharIndex = 0;
 
 
    //states
@@ -101,37 +121,46 @@ end
     localparam  SEND_COMMAND = 2'b10;
     localparam CLEAR_BUFFER = 2'b11;
 
-integer i;  // Declare the loop index outside the always block
+integer i;
 reg vga_text_dataFlag = 1'b0;
 
 always @(posedge clk) begin
-        if (UARTcharBuf == 8'd13) begin
-                state <= SEND_COMMAND;
+        if (byteReady) begin
+            UARTcharBuf[(inputCharIndex*8) +: 8] <= uartDataIn;
+            inputCharIndex <= inputCharIndex + 1;
+        end
+        
+        if (uartDataIn == 8'd13) begin // Enter key
+            state <= SEND_COMMAND;
+            led <= 6'b010101;
         end
     case (state)
         IDDLE : begin
             y_char_delayed <= y_char;
             x_char_delayed <= x_char;
             prompt_cnt <= 6'd0;
+            led <= 6'b111111;
         end
         SEND_PROMPT : begin
             if (prompt_cnt < PROMPT_LEN) begin
-                if (tx_data_ready) begin
-                    tx_data <= prompt[prompt_cnt];
+                //if (tx_data_ready) begin
                     tx_data_valid <= 1'b1;
+                    tx_data <= prompt[prompt_cnt];
                     prompt_cnt <= prompt_cnt + 1;
-                end
-            end else if (tx_data_ready) begin
-                tx_data_valid <= 1'b0;
+                    led <= 6'b011110;
+//end
+           // end else if (tx_data_ready) begin
+          //      tx_data_valid <= 1'b0;
             end
-          state <= SEND_PROMPT;
+          state <= IDDLE;
+          led <= 6'b110011;
         end
         SEND_COMMAND : begin
             vga_text_dataFlag <= 1'b1;
             state <= CLEAR_BUFFER;
         end
         CLEAR_BUFFER: begin
-            for (i = 0; i < 1200; i = i + 1) begin
+            for (i = 0; i < (bufferWidth-1); i = i + 1) begin
                 UARTcharBuf[i] <= 8'b0;
             end
             vga_text_dataFlag <= 1'b0;
@@ -148,7 +177,7 @@ end
         .o_we(printable),        // znak k tisku
 //        .full,
         .i_ena(1'b1),             // povolení modulu
-        .i_data(UARTcharBuf)
+        .i_data(uartDataIn)
 //        .clean()
     );
 

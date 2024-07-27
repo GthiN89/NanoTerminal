@@ -4,7 +4,7 @@ module text_to_VGA (
     input clean,           // Clean/reset signal input
     input [7:0] i_data , // Input data buffer (256 bytes)
     output reg [12:0] o_address, // Output address for VGA memory
-    output reg [7:0] o_data, // Output data for VGA memory
+    output reg [1200:0] o_data, // Output data for VGA memory
     output reg o_we, // Write enable signal for VGA memory
     output reg full  // Output signal indicating full screen
 );

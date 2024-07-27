@@ -1,5 +1,5 @@
 module display_480p #(
-    CORDW=32,    // signed coordinate width (bits)
+    CORDW=16,    // signed coordinate width (bits)
     H_RES=640,   // horizontal resolution (pixels)
     V_RES=480,   // vertical resolution (lines)
     H_FP=16,     // horizontal front porch

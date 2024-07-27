@@ -1,0 +1,107 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Lite</Mode>
+    <AoCore_Lite index="0" sample_clock="clk" trig_type="0" capture_amount="1024" implemention="0" input_register_enabled="0" capture_init_data_enabled="0" module_name="top">
+        <SignalList>
+            <Signal capture_enable="true">uart_rx</Signal>
+            <Signal capture_enable="true">uart_tx</Signal>
+            <Signal capture_enable="true">uartDataIn</Signal>
+            <Signal capture_enable="true">tx_data_valid</Signal>
+            <Signal capture_enable="true">tx_data_ready</Signal>
+            <Bus capture_enable="true" name="rxmod/dataIn[7:0]">
+                <Signal>rxmod/dataIn[7]</Signal>
+                <Signal>rxmod/dataIn[6]</Signal>
+                <Signal>rxmod/dataIn[5]</Signal>
+                <Signal>rxmod/dataIn[4]</Signal>
+                <Signal>rxmod/dataIn[3]</Signal>
+                <Signal>rxmod/dataIn[2]</Signal>
+                <Signal>rxmod/dataIn[1]</Signal>
+                <Signal>rxmod/dataIn[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="rxmod/rxState[3:0]">
+                <Signal>rxmod/rxState[3]</Signal>
+                <Signal>rxmod/rxState[2]</Signal>
+                <Signal>rxmod/rxState[1]</Signal>
+                <Signal>rxmod/rxState[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="rxmod/rxCounter[12:0]">
+                <Signal>rxmod/rxCounter[12]</Signal>
+                <Signal>rxmod/rxCounter[11]</Signal>
+                <Signal>rxmod/rxCounter[10]</Signal>
+                <Signal>rxmod/rxCounter[9]</Signal>
+                <Signal>rxmod/rxCounter[8]</Signal>
+                <Signal>rxmod/rxCounter[7]</Signal>
+                <Signal>rxmod/rxCounter[6]</Signal>
+                <Signal>rxmod/rxCounter[5]</Signal>
+                <Signal>rxmod/rxCounter[4]</Signal>
+                <Signal>rxmod/rxCounter[3]</Signal>
+                <Signal>rxmod/rxCounter[2]</Signal>
+                <Signal>rxmod/rxCounter[1]</Signal>
+                <Signal>rxmod/rxCounter[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="rxmod/rxBitNumber[2:0]">
+                <Signal>rxmod/rxBitNumber[2]</Signal>
+                <Signal>rxmod/rxBitNumber[1]</Signal>
+                <Signal>rxmod/rxBitNumber[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="txmod/data[7:0]">
+                <Signal>txmod/data[7]</Signal>
+                <Signal>txmod/data[6]</Signal>
+                <Signal>txmod/data[5]</Signal>
+                <Signal>txmod/data[4]</Signal>
+                <Signal>txmod/data[3]</Signal>
+                <Signal>txmod/data[2]</Signal>
+                <Signal>txmod/data[1]</Signal>
+                <Signal>txmod/data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="txmod/clk_count[24:0]">
+                <Signal>txmod/clk_count[24]</Signal>
+                <Signal>txmod/clk_count[23]</Signal>
+                <Signal>txmod/clk_count[22]</Signal>
+                <Signal>txmod/clk_count[21]</Signal>
+                <Signal>txmod/clk_count[20]</Signal>
+                <Signal>txmod/clk_count[19]</Signal>
+                <Signal>txmod/clk_count[18]</Signal>
+                <Signal>txmod/clk_count[17]</Signal>
+                <Signal>txmod/clk_count[16]</Signal>
+                <Signal>txmod/clk_count[15]</Signal>
+                <Signal>txmod/clk_count[14]</Signal>
+                <Signal>txmod/clk_count[13]</Signal>
+                <Signal>txmod/clk_count[12]</Signal>
+                <Signal>txmod/clk_count[11]</Signal>
+                <Signal>txmod/clk_count[10]</Signal>
+                <Signal>txmod/clk_count[9]</Signal>
+                <Signal>txmod/clk_count[8]</Signal>
+                <Signal>txmod/clk_count[7]</Signal>
+                <Signal>txmod/clk_count[6]</Signal>
+                <Signal>txmod/clk_count[5]</Signal>
+                <Signal>txmod/clk_count[4]</Signal>
+                <Signal>txmod/clk_count[3]</Signal>
+                <Signal>txmod/clk_count[2]</Signal>
+                <Signal>txmod/clk_count[1]</Signal>
+                <Signal>txmod/clk_count[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="txmod/buff[9:0]">
+                <Signal>txmod/buff[9]</Signal>
+                <Signal>txmod/buff[8]</Signal>
+                <Signal>txmod/buff[7]</Signal>
+                <Signal>txmod/buff[6]</Signal>
+                <Signal>txmod/buff[5]</Signal>
+                <Signal>txmod/buff[4]</Signal>
+                <Signal>txmod/buff[3]</Signal>
+                <Signal>txmod/buff[2]</Signal>
+                <Signal>txmod/buff[1]</Signal>
+                <Signal>txmod/buff[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="txmod/len[3:0]">
+                <Signal>txmod/len[3]</Signal>
+                <Signal>txmod/len[2]</Signal>
+                <Signal>txmod/len[1]</Signal>
+                <Signal>txmod/len[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">byteReady</Signal>
+        </SignalList>
+    </AoCore_Lite>
+    <GAO_ID>1001110100100110</GAO_ID>
+</GAO_CONFIG>
