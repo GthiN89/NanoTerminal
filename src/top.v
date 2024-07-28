@@ -208,7 +208,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         .clka(clk),        // input clock for A port
         .ocea(1'b1),       // input output clock enable for A
         .cea(printable),   // input clock enable for A
-        .reseta(1'b0),     // input reset for A
+        .reseta(btn_rst_n),     // input reset for A
         .wrea(printable),  // input write enable for A
 
         // Port B: read
@@ -217,7 +217,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         .clkb(clk),        // input clock for B port
         .oceb(1'b1),       // input output clock enable for B
         .ceb(1'b1),        // input clock enable for B
-        .resetb(1'b0),     // input reset for B
+        .resetb(btn_rst_n),     // input reset for B
         .wreb(1'b0),       // input write enable for B (not used)
         .dinb(8'h00)       // input data for B (not used)
     );
@@ -227,7 +227,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         .clk(clk),         // input clk
         .oce(1'b1),        // input oce
         .ce(1'b1),         // input ce
-        .reset(1'b0),      // input reset
+        .reset(btn_rst_n),      // input reset
         .ad(rom_addr)      // input [14:0] ad
     );
 

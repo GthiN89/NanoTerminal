@@ -276,7 +276,6 @@ always @(posedge i_clk) begin
 
             STATE_WRITE_TEXT: begin // State for writing text
                 if(idx < 79) begin
-//                o_address <= {(lin + 1), (col[4:0] -1)}; // Set output address
                 o_address <= {lin, col}; // Set output address
                 o_data <= i_data_buff[idx]; // Set output data
                 idx <= idx + 1'b1; // Increment column position
