@@ -5,12 +5,12 @@
 //Part Number: GW2AR-LV18QN88PC8/I7
 //Device: GW2AR-18
 //Device Version: C
-//Created Time: Wed Jul 24 11:49:10 2024
+//Created Time: Sun Jul 28 02:03:59 2024
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------
 
-    charbuf your_instance_name(
+    charbuffer80x30 your_instance_name(
         .douta(douta_o), //output [7:0] douta
         .doutb(doutb_o), //output [7:0] doutb
         .clka(clka_i), //input clka
@@ -23,9 +23,9 @@
         .ceb(ceb_i), //input ceb
         .resetb(resetb_i), //input resetb
         .wreb(wreb_i), //input wreb
-        .ada(ada_i), //input [11:0] ada
+        .ada(ada_i), //input [15:0] ada
         .dina(dina_i), //input [7:0] dina
-        .adb(adb_i), //input [11:0] adb
+        .adb(adb_i), //input [15:0] adb
         .dinb(dinb_i) //input [7:0] dinb
     );
 

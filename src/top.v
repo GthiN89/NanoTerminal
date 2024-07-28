@@ -53,7 +53,7 @@ module top (
 
     localparam PROMPT_LEN = 21; // Length of the prompt message with escape sequences
     reg [7:0] prompt [PROMPT_LEN-1:0]; // Buffer to hold the prompt message
-    reg [5:0] prompt_cnt; // Counter for prompt message
+    reg [6:0] prompt_cnt; // Counter for prompt message
     reg [3:0] state;
     reg       false;
 
@@ -92,9 +92,9 @@ module top (
     ); // Transmitter module
 
     localparam bufferWidth = 80; // chars 
-    reg [7:0] UARTcharBuf [bufferWidth-1:0];
-    reg [7:0] VGAcharBuf [bufferWidth-1:0];
-    reg [7:0] inputCharIndex = 0;
+    reg [8:0] UARTcharBuf [bufferWidth-1:0];
+    reg [8:0] VGAcharBuf [bufferWidth-1:0];
+    reg [8:0] inputCharIndex = 0;
 
     // States
     localparam  IDLE = 4'b0000;
@@ -197,9 +197,13 @@ reg clear_delay = 0; // To store the previous state of uart_rx
     // ROM address for font
     wire [14:0] rom_addr = {charnum, y_char_delayed, x_char_delayed};
 
-    charbuf charbuf(
+
+
+
+
+    charbuffer80x30 buff80x30(
         // Port A: write
-        .ada(vram_addr),   // input [12:0] A address
+        .ada(vram_addr),   // input [15:0] A address
         .dina(vram_data),  // input [7:0]  Data in
         .clka(clk),        // input clock for A port
         .ocea(1'b1),       // input output clock enable for A
@@ -208,7 +212,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         .wrea(printable),  // input write enable for A
 
         // Port B: read
-        .adb(video_addr),  // input [12:0] B address
+        .adb(video_addr),  // input [15:0] B address
         .doutb(charnum),   // output [7:0] Data out
         .clkb(clk),        // input clock for B port
         .oceb(1'b1),       // input output clock enable for B

@@ -2,13 +2,13 @@ module text_to_VGA (
     input i_clk,           // System clock input
     input reg i_ena,           // Enable signal input
     input clean,           // Clean/reset signal input
-    input [7:0] i_data  [79:0], // Input data buffer (256 bytes)
+    input [8:0] i_data  [79:0], // Input data buffer (256 bytes)
     input  reg vga_text_dataFlag,
-    output reg [95:0] o_address, // Output address for VGA memory
-    output reg [7:0] o_data, // Output data for VGA memory
+    output reg [15:0] o_address, // Output address for VGA memory
+    output reg [8:0] o_data, // Output data for VGA memory
     output reg o_we, // Write enable signal for VGA memory
     output reg full,  // Output signal indicating full screen
-    output reg  [7:0] i_data_buff [78:0] // Debug output for i_data_buff
+    output reg  [8:0] i_data_buff [78:0] // Debug output for i_data_buff
 );
 
 //reg [7:0] i_data_buff [79:0];
@@ -20,9 +20,9 @@ reg i_text_buff = 0;
 localparam maxcol = 79; // 80 columns (0 to 79)
 localparam maxlin = 29; // 30 rows (0 to 29)
 
-reg [80:0] idx = 0;  // Text index (from 0 to 255)
-reg [12:0] col = 0;  // Horizontal position (from 0 to maxcol)
-reg [35:0] lin = 0;  // Vertical position (from 0 to maxlin)
+reg [8:0] idx = 0;  // Text index (from 0 to 255)
+reg [7:0] col = 0;  // Horizontal position (from 0 to maxcol)
+reg [4:0] lin = 0;  // Vertical position (from 0 to maxlin)
 
 reg [4:0] counter = 0;        // Waiting timer counter
 wire slowclock = counter[1];  // Derived slow clock
@@ -234,7 +234,7 @@ end
 always @(posedge i_clk) begin
     if (clean) begin // If clean signal is active
         col <= 0; // Reset column position
-        lin <= 1'b0; // Reset line position
+        lin <= 0; // Reset line position
         idx <= 0; // Reset index position
         init_idx <= 0; // Reset initial message index
         state <= STATE_INIT; // Set state to initial message
@@ -246,8 +246,7 @@ always @(posedge i_clk) begin
                 o_data <= i_data_buff[init_idx]; // Set output data
                 o_we <= 1'b1; // Set write enable
                 init_idx <= init_idx + 1; // Increment initial message index
- //                                       lin <= lin + 1; // Increment line position
-                            col <= col + 1'b1; // Increment column position
+                col <= col + 1'b1; // Increment column position
                 // Update screen position
                 if (i_data_buff[init_idx] == 8'h0A) begin // If newline character is detected
                     col <= 0; // Reset column position
@@ -255,7 +254,7 @@ always @(posedge i_clk) begin
                 end else begin
                     if (col == maxcol) begin // If end of column
                         col <= 0; // Reset column position
- //                       lin <= lin + 1; // Increment line position
+                        lin <= lin + 1'b1;  // Increment line position
                     end else begin
 //                        col <= col + 1'b1; // Increment column position
                     end
@@ -278,22 +277,23 @@ always @(posedge i_clk) begin
             STATE_WRITE_TEXT: begin // State for writing text
                 if(idx < 79) begin
 //                o_address <= {(lin + 1), (col[4:0] -1)}; // Set output address
-                o_address <= {lin + 1, idx}; // Set output address
+                o_address <= {lin, col}; // Set output address
                 o_data <= i_data_buff[idx]; // Set output data
                 idx <= idx + 1'b1; // Increment column position
                 o_we <= 1'b1; // Set write enable
                 end else begin 
                 done_flag <= 0;
                 state <= STATE_WAIT_CMD;
-                idx <= 1'b1; // Increment text index
+                idx <= 1'b0; // Increment text index
+
                 end
 
-//                    if (col == maxcol) begin // If end of column
-//                        col <= 0; // Reset column position
-                        lin <= lin + 1; // Increment line position
-//                    end else begin
-//                        col <= col + 1'b1; // Increment column position
-//                    end
+                   if (col == maxcol) begin // If end of column
+                        col <= 0; // Reset column position
+                        lin <= lin + 1'b1; ; // Increment line position
+                    end else begin
+                        col <= col + 1'b1; // Increment column position
+                   end
                 
 
 //                 Check if we have reached the end of the screen
