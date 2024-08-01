@@ -3,11 +3,13 @@ module top (
     input  wire clk_sys,      // system clock
     input  wire btn_rst_n,    // reset button
     input  wire uart_rx,      // UART receive
+    inout       [5:0]	m0s,
     output wire [2:0] TMDSp, TMDSn, // HDMI/DVI signals
     output wire TMDSp_clock, TMDSn_clock, // HDMI/DVI clock signals
     output wire uart_tx,      // UART transmit
     output reg [5:0] led      // LEDs
 );
+
 
     localparam CORDW = 16;       // coordinate width (bits)
     wire signed [CORDW-1:0] sx, sy;
@@ -58,9 +60,7 @@ module top (
     reg       false;
 
     // VRAM and display signals
-    wire [12:0] vram_addr;
-    wire [7:0] vram_data;
-    wire printable;
+
     reg [3:0] y_char_delayed;
     reg [2:0] x_char_delayed;
 
@@ -115,7 +115,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
             y_char_delayed <= y_char;
             x_char_delayed <= x_char;
             prompt_cnt <= 6'd0;
-            led <= 6'b111000; // LED status for IDLE state
+        //    led <= 6'b111000; // LED status for IDLE state
            for (i = 0; i < bufferWidth; i = i + 1) begin
                     VGAcharBuf[i] <= 8'b00000000;
                 end
@@ -126,7 +126,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
             SEND_PROMPT: begin
                 y_char_delayed <= y_char;
                 x_char_delayed <= x_char;
-                led <= 6'b000001; // LED status for SEND_PROMPT state
+           //     led <= 6'b000001; // LED status for SEND_PROMPT state
                 if (prompt_cnt < PROMPT_LEN) begin
                     tx_data <= prompt[prompt_cnt]; // Load next byte of prompt
                     tx_data_valid <= 1'b1; // Trigger send
@@ -140,7 +140,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
             RECEIVE_CHAR: begin
                 y_char_delayed <= y_char;
                 x_char_delayed <= x_char;
-                led <= 6'b110011; // LED status for RECEIVE_CHAR state
+             //   led <= 6'b110011; // LED status for RECEIVE_CHAR state
                 if (byteReady) begin
                     UARTcharBuf[inputCharIndex] <= uartDataIn;
                     inputCharIndex <= inputCharIndex + 1;
@@ -154,7 +154,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
                 vga_text_dataFlag <= 1'b1; // Set flag to 1 when sending data
                 y_char_delayed <= y_char;
                 x_char_delayed <= x_char;
-                led <= 6'b001100; // LED status for SEND_COMMAND state
+             //   led <= 6'b001100; // LED status for SEND_COMMAND state
                 VGAcharBuf <= UARTcharBuf;
                 state <= CLEAR_BUFFER;
 
@@ -164,7 +164,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
                 vga_text_dataFlag <= 1'b0; // Set flag to 1 when sending data
                 y_char_delayed <= y_char;
                 x_char_delayed <= x_char;
-                led <= 6'b000000; // LED status for CLEAR_BUFFER state
+              //  led <= 6'b000000; // LED status for CLEAR_BUFFER state
                 if (clear_delay < 1) begin
                     clear_delay <= 1; end else
                 begin
@@ -184,18 +184,36 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         vga_text_dataFlag_delay <= vga_text_dataFlag_temp;
     end
     reg vga_text_dataFlag_delay, vga_text_dataFlag_temp;
-    text_to_VGA text_to_VGA_inst (
-        .i_clk(vsync),
-        .o_address(vram_addr),   // Video address for write [12:0]
-        .o_data(vram_data),      // Character to write [7:0]
-        .o_we(printable),        // Write enable signal
-        .i_ena(vga_text_dataFlag), // Module enable
-        .vga_text_dataFlag(vga_text_dataFlag),
-        .i_data(VGAcharBuf)
-    );
-
-    // ROM address for font
+// Signály pro komunikaci mezi moduly
+wire [11:0] cursor_pos;           // Pozice kurzoru
+wire [7:0] spi_data;              // Přijatá data přes SPI
+wire spi_data_ready;              // Příznak připravenosti přijatých dat přes SPI
     wire [14:0] rom_addr = {charnum, y_char_delayed, x_char_delayed};
+
+
+
+// SPI input parser
+wire mcu_start;
+wire kbd_activate;
+wire [7:0] mcu_data_out;
+
+
+// Instance mcu_spi
+mcu_spi mcu (
+    .clk(clk),
+    .reset(1'b0),                  // Reset signal (not used, set to 0)
+
+    .spi_io_ss(m0s[2]),            // SPI Slave Select
+    .spi_io_clk(m0s[3]),           // SPI Clock
+    .spi_io_din(m0s[1]),           // SPI Data Input
+    .spi_io_dout(spi_io_dout),     // SPI Data Output
+
+    .mcu_start(mcu_start),         // Start signal
+    .kbd_activate(kbd_activate),   // Activation signal for keyboard interface
+    .mcu_dout(mcu_data_out),       // Data output to MCU
+    .mcu_hid_din(hid_data_out),     // Data input from HID
+    .kb_counter(led)
+);
 
 
 
@@ -206,7 +224,7 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         .ada(vram_addr),   // input [15:0] A address
         .dina(vram_data),  // input [7:0]  Data in
         .clka(clk),        // input clock for A port
-        .ocea(1'b1),       // input output clock enable for A
+        .ocea(printable),       // input output clock enable for A
         .cea(printable),   // input clock enable for A
         .reseta(btn_rst_n),     // input reset for A
         .wrea(printable),  // input write enable for A
@@ -222,6 +240,59 @@ reg clear_delay = 0; // To store the previous state of uart_rx
         .dinb(8'h00)       // input data for B (not used)
     );
 
+    text_to_VGA text_to_VGA_inst (
+        .i_clk(vsync),
+        .o_address(vram_addr_serial),   // Video address for write [12:0]
+        .o_data(vram_data_serial),      // Character to write [7:0]
+        .o_we(printable_serial),        // Write enable signal
+        .i_ena(vga_text_dataFlag), // Module enable
+        .vga_text_dataFlag(vga_text_dataFlag),
+        .i_data(VGAcharBuf)
+    );
+
+    keyboard_interface keyboard_interface_inst (
+        .clk(clk),
+        .reset(1'b0),
+        .enable(kbd_activate), // Propojení strobe signálu
+        .spi_in_data(mcu_data_out),             // Propojení datového signálu
+        .x(x_cell),        
+        .y(y_cell),        
+        .vram_addr(vram_addr_keyboard),           // Výstupní signál pro adresu VRAM
+        .vram_data(vram_data_keyboard),           // Výstupní signál pro data VRAM
+        .printable(printable_keyboard),            // Výstupní signál pro povolení zápisu do VRAM
+        .cursor_active(cursor_active)
+    );
+
+  //  reg  printable_serial_delay  = printable_serial;
+
+    //wire [15:0] vram_addr = printable_serial_delay ? vram_addr_ser : vram_addr_ser;
+   // wire [7:0] vram_data  = printable_serial_delay ? vram_data_ser : vram_data_ser;
+
+    reg printable;
+    reg [15:0] vram_addr;
+    reg [7:0] vram_data;
+    wire  charbuf_o;
+    reg printable_serial;
+    reg printable_serial_delay;
+    reg [15:0]  vram_addr_serial;
+    reg [15:0]  vram_addr_serial_delay;
+    reg [7:0] vram_data_serial;
+    reg [7:0] vram_data_serial_delay;
+    reg printable_keyboard;
+    reg [15:0]  vram_addr_keyboard;
+    reg [7:0] vram_data_keyboard;
+
+    always @(*) begin
+    // Kód, který se má spustit při změně libovolného signálu uvedeného ve výrazu
+        printable_serial_delay <= printable_serial;
+        vram_addr_serial_delay <= vram_addr_serial;
+        vram_data_serial_delay <= vram_data_serial;
+        vram_addr <= printable_serial ? vram_addr_serial_delay : vram_addr_keyboard;
+        printable <= printable_serial ? printable_serial_delay : printable_keyboard;
+        vram_data <= printable_serial ? vram_data_serial_delay : vram_data_keyboard;
+    end
+
+
     Gowin_pROM font_rom(
         .dout(charbuf_o),  // output [0:0] dout
         .clk(clk),         // input clk
@@ -232,9 +303,9 @@ reg clear_delay = 0; // To store the previous state of uart_rx
     );
 
     // Convert output data to 8-bit RGB
-    wire [7:0] paint_r = {8{charbuf_o}};
-    wire [7:0] paint_g = {8{charbuf_o}};
-    wire [7:0] paint_b = {8{charbuf_o}};
+    wire [7:0] paint_r = {8{cursor_active ? ~charbuf_o : charbuf_o}};
+    wire [7:0] paint_g = {8{cursor_active ? ~charbuf_o : charbuf_o}};
+    wire [7:0] paint_b = {8{cursor_active ? ~charbuf_o : charbuf_o}};
 
     // DVI Output
     DVI_TX_Top DVI_out(

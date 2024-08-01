@@ -1,0 +1,364 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Standard</Mode>
+    <AoCore index="0" sample_clock="DVI_out/I_serial_clk" trig_type="0" storage_depth="1024" window_num="1" capture_amount="1024" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false">
+        <SignalList>
+            <Bus capture_enable="true" name="keyboard_interface_inst/spi_in_data[7:0]">
+                <Signal>keyboard_interface_inst/spi_in_data[7]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[6]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[5]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[4]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[3]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[2]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[1]</Signal>
+                <Signal>keyboard_interface_inst/spi_in_data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/vram_addr[15:0]">
+                <Signal>keyboard_interface_inst/vram_addr[15]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[14]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[13]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[12]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[11]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[10]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[9]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[8]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[7]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[6]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[5]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[4]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[3]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[2]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[1]</Signal>
+                <Signal>keyboard_interface_inst/vram_addr[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/vram_data[7:0]">
+                <Signal>keyboard_interface_inst/vram_data[7]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[6]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[5]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[4]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[3]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[2]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[1]</Signal>
+                <Signal>keyboard_interface_inst/vram_data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/x[6:0]">
+                <Signal>keyboard_interface_inst/x[6]</Signal>
+                <Signal>keyboard_interface_inst/x[5]</Signal>
+                <Signal>keyboard_interface_inst/x[4]</Signal>
+                <Signal>keyboard_interface_inst/x[3]</Signal>
+                <Signal>keyboard_interface_inst/x[2]</Signal>
+                <Signal>keyboard_interface_inst/x[1]</Signal>
+                <Signal>keyboard_interface_inst/x[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/y[4:0]">
+                <Signal>keyboard_interface_inst/y[4]</Signal>
+                <Signal>keyboard_interface_inst/y[3]</Signal>
+                <Signal>keyboard_interface_inst/y[2]</Signal>
+                <Signal>keyboard_interface_inst/y[1]</Signal>
+                <Signal>keyboard_interface_inst/y[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/cursor_x[6:0]">
+                <Signal>keyboard_interface_inst/cursor_x[6]</Signal>
+                <Signal>keyboard_interface_inst/cursor_x[5]</Signal>
+                <Signal>keyboard_interface_inst/cursor_x[4]</Signal>
+                <Signal>keyboard_interface_inst/cursor_x[3]</Signal>
+                <Signal>keyboard_interface_inst/cursor_x[2]</Signal>
+                <Signal>keyboard_interface_inst/cursor_x[1]</Signal>
+                <Signal>keyboard_interface_inst/cursor_x[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/cursor_y[4:0]">
+                <Signal>keyboard_interface_inst/cursor_y[4]</Signal>
+                <Signal>keyboard_interface_inst/cursor_y[3]</Signal>
+                <Signal>keyboard_interface_inst/cursor_y[2]</Signal>
+                <Signal>keyboard_interface_inst/cursor_y[1]</Signal>
+                <Signal>keyboard_interface_inst/cursor_y[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/current_state[1:0]">
+                <Signal>keyboard_interface_inst/current_state[1]</Signal>
+                <Signal>keyboard_interface_inst/current_state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/current_char[7:0]">
+                <Signal>keyboard_interface_inst/current_char[7]</Signal>
+                <Signal>keyboard_interface_inst/current_char[6]</Signal>
+                <Signal>keyboard_interface_inst/current_char[5]</Signal>
+                <Signal>keyboard_interface_inst/current_char[4]</Signal>
+                <Signal>keyboard_interface_inst/current_char[3]</Signal>
+                <Signal>keyboard_interface_inst/current_char[2]</Signal>
+                <Signal>keyboard_interface_inst/current_char[1]</Signal>
+                <Signal>keyboard_interface_inst/current_char[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/prev_char[7:0]">
+                <Signal>keyboard_interface_inst/prev_char[7]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[6]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[5]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[4]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[3]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[2]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[1]</Signal>
+                <Signal>keyboard_interface_inst/prev_char[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="keyboard_interface_inst/idx[7:0]">
+                <Signal>keyboard_interface_inst/idx[7]</Signal>
+                <Signal>keyboard_interface_inst/idx[6]</Signal>
+                <Signal>keyboard_interface_inst/idx[5]</Signal>
+                <Signal>keyboard_interface_inst/idx[4]</Signal>
+                <Signal>keyboard_interface_inst/idx[3]</Signal>
+                <Signal>keyboard_interface_inst/idx[2]</Signal>
+                <Signal>keyboard_interface_inst/idx[1]</Signal>
+                <Signal>keyboard_interface_inst/idx[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">keyboard_interface_inst/clk</Signal>
+            <Signal capture_enable="true">keyboard_interface_inst/reset</Signal>
+            <Signal capture_enable="true">keyboard_interface_inst/enable</Signal>
+            <Signal capture_enable="true">keyboard_interface_inst/printable</Signal>
+            <Signal capture_enable="true">keyboard_interface_inst/done_flag</Signal>
+            <Signal capture_enable="true">keyboard_interface_inst/full</Signal>
+            <Signal capture_enable="true">keyboard_interface_inst/cursor_active</Signal>
+            <Bus capture_enable="true" name="text_to_VGA_inst/i_data[74][8:0]">
+                <Signal>text_to_VGA_inst/i_data[74][8]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][7]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][6]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][5]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][4]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][3]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][2]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][1]</Signal>
+                <Signal>text_to_VGA_inst/i_data[74][0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/o_data[8:0]">
+                <Signal>text_to_VGA_inst/o_data[8]</Signal>
+                <Signal>text_to_VGA_inst/o_data[7]</Signal>
+                <Signal>text_to_VGA_inst/o_data[6]</Signal>
+                <Signal>text_to_VGA_inst/o_data[5]</Signal>
+                <Signal>text_to_VGA_inst/o_data[4]</Signal>
+                <Signal>text_to_VGA_inst/o_data[3]</Signal>
+                <Signal>text_to_VGA_inst/o_data[2]</Signal>
+                <Signal>text_to_VGA_inst/o_data[1]</Signal>
+                <Signal>text_to_VGA_inst/o_data[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/idx[8:0]">
+                <Signal>text_to_VGA_inst/idx[8]</Signal>
+                <Signal>text_to_VGA_inst/idx[7]</Signal>
+                <Signal>text_to_VGA_inst/idx[6]</Signal>
+                <Signal>text_to_VGA_inst/idx[5]</Signal>
+                <Signal>text_to_VGA_inst/idx[4]</Signal>
+                <Signal>text_to_VGA_inst/idx[3]</Signal>
+                <Signal>text_to_VGA_inst/idx[2]</Signal>
+                <Signal>text_to_VGA_inst/idx[1]</Signal>
+                <Signal>text_to_VGA_inst/idx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/col[7:0]">
+                <Signal>text_to_VGA_inst/col[7]</Signal>
+                <Signal>text_to_VGA_inst/col[6]</Signal>
+                <Signal>text_to_VGA_inst/col[5]</Signal>
+                <Signal>text_to_VGA_inst/col[4]</Signal>
+                <Signal>text_to_VGA_inst/col[3]</Signal>
+                <Signal>text_to_VGA_inst/col[2]</Signal>
+                <Signal>text_to_VGA_inst/col[1]</Signal>
+                <Signal>text_to_VGA_inst/col[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/lin[4:0]">
+                <Signal>text_to_VGA_inst/lin[4]</Signal>
+                <Signal>text_to_VGA_inst/lin[3]</Signal>
+                <Signal>text_to_VGA_inst/lin[2]</Signal>
+                <Signal>text_to_VGA_inst/lin[1]</Signal>
+                <Signal>text_to_VGA_inst/lin[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/counter[4:0]">
+                <Signal>text_to_VGA_inst/counter[4]</Signal>
+                <Signal>text_to_VGA_inst/counter[3]</Signal>
+                <Signal>text_to_VGA_inst/counter[2]</Signal>
+                <Signal>text_to_VGA_inst/counter[1]</Signal>
+                <Signal>text_to_VGA_inst/counter[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/state[1:0]">
+                <Signal>text_to_VGA_inst/state[1]</Signal>
+                <Signal>text_to_VGA_inst/state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/init_idx[80:0]">
+                <Signal>text_to_VGA_inst/init_idx[80]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[79]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[78]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[77]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[76]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[75]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[74]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[73]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[72]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[71]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[70]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[69]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[68]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[67]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[66]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[65]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[64]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[63]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[62]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[61]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[60]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[59]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[58]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[57]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[56]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[55]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[54]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[53]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[52]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[51]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[50]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[49]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[48]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[47]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[46]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[45]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[44]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[43]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[42]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[41]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[40]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[39]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[38]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[37]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[36]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[35]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[34]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[33]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[32]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[31]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[30]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[29]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[28]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[27]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[26]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[25]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[24]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[23]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[22]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[21]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[20]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[19]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[18]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[17]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[16]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[15]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[14]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[13]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[12]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[11]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[10]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[9]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[8]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[7]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[6]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[5]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[4]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[3]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[2]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[1]</Signal>
+                <Signal>text_to_VGA_inst/init_idx[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/i_text_buff_counter[8:0]">
+                <Signal>text_to_VGA_inst/i_text_buff_counter[8]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[7]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[6]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[5]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[4]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[3]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[2]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[1]</Signal>
+                <Signal>text_to_VGA_inst/i_text_buff_counter[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="text_to_VGA_inst/i[31:0]">
+                <Signal>text_to_VGA_inst/i[31]</Signal>
+                <Signal>text_to_VGA_inst/i[30]</Signal>
+                <Signal>text_to_VGA_inst/i[29]</Signal>
+                <Signal>text_to_VGA_inst/i[28]</Signal>
+                <Signal>text_to_VGA_inst/i[27]</Signal>
+                <Signal>text_to_VGA_inst/i[26]</Signal>
+                <Signal>text_to_VGA_inst/i[25]</Signal>
+                <Signal>text_to_VGA_inst/i[24]</Signal>
+                <Signal>text_to_VGA_inst/i[23]</Signal>
+                <Signal>text_to_VGA_inst/i[22]</Signal>
+                <Signal>text_to_VGA_inst/i[21]</Signal>
+                <Signal>text_to_VGA_inst/i[20]</Signal>
+                <Signal>text_to_VGA_inst/i[19]</Signal>
+                <Signal>text_to_VGA_inst/i[18]</Signal>
+                <Signal>text_to_VGA_inst/i[17]</Signal>
+                <Signal>text_to_VGA_inst/i[16]</Signal>
+                <Signal>text_to_VGA_inst/i[15]</Signal>
+                <Signal>text_to_VGA_inst/i[14]</Signal>
+                <Signal>text_to_VGA_inst/i[13]</Signal>
+                <Signal>text_to_VGA_inst/i[12]</Signal>
+                <Signal>text_to_VGA_inst/i[11]</Signal>
+                <Signal>text_to_VGA_inst/i[10]</Signal>
+                <Signal>text_to_VGA_inst/i[9]</Signal>
+                <Signal>text_to_VGA_inst/i[8]</Signal>
+                <Signal>text_to_VGA_inst/i[7]</Signal>
+                <Signal>text_to_VGA_inst/i[6]</Signal>
+                <Signal>text_to_VGA_inst/i[5]</Signal>
+                <Signal>text_to_VGA_inst/i[4]</Signal>
+                <Signal>text_to_VGA_inst/i[3]</Signal>
+                <Signal>text_to_VGA_inst/i[2]</Signal>
+                <Signal>text_to_VGA_inst/i[1]</Signal>
+                <Signal>text_to_VGA_inst/i[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">text_to_VGA_inst/i_clk</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/i_ena</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/clean</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/vga_text_dataFlag</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/o_we</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/full</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/i_ena_delay</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/i_text_buff</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/slowclock</Signal>
+            <Signal capture_enable="true">text_to_VGA_inst/done_flag</Signal>
+        </SignalList>
+        <Triggers>
+            <Trigger index="0">
+                <SignalList>
+                    <Signal>printable_keyboard</Signal>
+                    <Signal>keyboard_interface_inst/printable</Signal>
+                </SignalList>
+            </Trigger>
+            <Trigger index="1"/>
+            <Trigger index="2"/>
+            <Trigger index="3"/>
+            <Trigger index="4"/>
+            <Trigger index="5"/>
+            <Trigger index="6"/>
+            <Trigger index="7"/>
+            <Trigger index="8"/>
+            <Trigger index="9"/>
+            <Trigger index="10"/>
+            <Trigger index="11"/>
+            <Trigger index="12"/>
+            <Trigger index="13"/>
+            <Trigger index="14"/>
+            <Trigger index="15"/>
+        </Triggers>
+        <MatchUnits>
+            <MatchUnit index="0" enabled="1" match_type="2" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="2" value0="00" value1="00" trigger="0"/>
+            <MatchUnit index="1" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="5" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="8" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="9" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="10" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="11" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="12" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="13" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="14" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="15" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+        </MatchUnits>
+        <Expressions type="Static">
+            <Expression>M0</Expression>
+        </Expressions>
+    </AoCore>
+    <GAO_ID>0100100101111000</GAO_ID>
+</GAO_CONFIG>
